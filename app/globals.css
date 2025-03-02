@@ -1,13 +1,8 @@
-@import "tailwindcss";
-
-@theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: 'Arial', 'Helvetica', sans-serif;
+  --font-mono: 'Courier New', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,5 +15,152 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: #1f2937; /* Dark gray for header, similar to bg-gray-800 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 1.875rem; /* 30px, similar to text-3xl */
+  font-weight: bold;
+  color: #ffffff;
+}
+
+header button {
+  padding: 0.5rem 1rem; /* 8px 16px, similar to px-4 py-2 */
+  border-radius: 9999px; /* Full rounded, similar to rounded-full */
+  font-weight: 500;
+}
+
+header .sign-in-btn {
+  background-color: #ffffff;
+  color: #111827; /* Dark text, similar to text-gray-900 */
+}
+
+header .sign-in-btn:hover {
+  background-color: #e5e7eb; /* Light gray hover, similar to hover:bg-gray-200 */
+}
+
+header .try-btn {
+  background-color: #4f46e5; /* Indigo, similar to bg-indigo-600 */
+  color: #ffffff;
+}
+
+header .try-btn:hover {
+  background-color: #4338ca; /* Darker indigo hover, similar to hover:bg-indigo-700 */
+}
+
+main {
+  padding-top: 5rem; /* 80px, similar to pt-20 */
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #1e293b, #4f46e5); /* Dark gray to indigo, similar to bg-gradient-to-b from-gray-900 to-indigo-900 */
+  text-align: center;
+  padding: 1rem; /* 16px, similar to px-4 */
+}
+
+.hero-section h2 {
+  font-size: 3.75rem; /* 60px, similar to text-5xl */
+  font-weight: 800; /* Extra bold, similar to font-extrabold */
+  margin-bottom: 1rem; /* 16px, similar to mb-4 */
+  color: #ffffff;
+}
+
+.hero-section p {
+  font-size: 1.25rem; /* 20px, similar to text-xl */
+  margin-bottom: 2rem; /* 32px, similar to mb-8 */
+  color: #d1d5db; /* Light gray, similar to text-gray-200 */
+}
+
+.hero-section button {
+  padding: 1rem 2rem; /* 16px 32px, similar to px-8 py-4 */
+  font-size: 1.125rem; /* 18px, similar to text-lg */
+  border-radius: 9999px; /* Full rounded, similar to rounded-full */
+  background-color: #4f46e5; /* Indigo, similar to bg-indigo-600 */
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3); /* Shadow, similar to shadow-md */
+}
+
+.hero-section button:hover {
+  background-color: #4338ca; /* Darker indigo hover, similar to hover:bg-indigo-700 */
+}
+
+.tools-section {
+  padding: 4rem 1.5rem; /* 64px 24px, similar to py-16 px-6 */
+  background-color: #1e293b; /* Dark gray, similar to bg-gray-900 */
+}
+
+.tools-section h3 {
+  font-size: 2.25rem; /* 36px, similar to text-4xl */
+  font-weight: bold;
+  margin-bottom: 3rem; /* 48px, similar to mb-12 */
+  color: #ffffff;
+  text-align: center;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2rem; /* 32px, similar to gap-8 */
+  max-width: 48rem; /* 768px, similar to max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .tools-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.tool-card {
+  padding: 1.5rem; /* 24px, similar to p-6 */
+  background-color: #374151; /* Gray, similar to bg-gray-800 */
+  border-radius: 0.5rem; /* 8px, similar to rounded-lg */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow, similar to shadow-lg */
+}
+
+.tool-card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover, similar to hover:shadow-xl */
+}
+
+.tool-card h4 {
+  font-size: 1.25rem; /* 20px, similar to text-xl */
+  font-weight: 600; /* Semi-bold, similar to font-semibold */
+  margin-bottom: 0.5rem; /* 8px, similar to mb-2 */
+  color: #ffffff;
+}
+
+.tool-card p {
+  color: #9ca3af; /* Light gray, similar to text-gray-400 */
+}
+
+footer {
+  padding: 1.5rem; /* 24px, similar to p-6 */
+  background-color: #1f2937; /* Dark gray, similar to bg-gray-800 */
+  text-align: center;
+  color: #d1d5db; /* Light gray, similar to text-gray-300 */
 }

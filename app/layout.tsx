@@ -3,8 +3,8 @@
 import React, { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Link from 'next/link'; // Ensure this is here
-import '../globals.css'; // Import Tailwind CSS styles
+import Link from 'next/link';
+import './globals.css'; // Import manual CSS styles
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -15,15 +15,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body className="min-h-screen bg-gray-900 text-white font-sans">
+      <body>
         {/* Header */}
-        <header className="fixed top-0 left-0 w-full z-50 bg-gray-800 shadow-lg">
+        <header>
           <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-3xl font-bold text-white"
+              className="text-3xl font-bold"
             >
               Nixly
             </motion.h1>
@@ -34,11 +34,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               className="flex items-center space-x-4"
             >
               <Link href="/signin">
-                <button className="px-4 py-2 text-gray-900 bg-white rounded-full hover:bg-gray-200 transition duration-300">
+                <button className="sign-in-btn">
                   Sign In
                 </button>
               </Link>
-              <button className="px-6 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition duration-300">
+              <button className="try-btn">
                 Try Nixly Now
               </button>
             </motion.div>
@@ -46,10 +46,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </header>
 
         {/* Main Content with Padding for Fixed Header */}
-        <main className="pt-20">{children}</main>
+        <main>
+          {children}
+        </main>
 
         {/* Footer */}
-        <footer className="p-6 bg-gray-800 text-center text-gray-300">
+        <footer>
           <p>© 2025 Nixly. All rights reserved.</p>
         </footer>
       </body>
