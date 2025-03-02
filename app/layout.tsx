@@ -3,7 +3,7 @@
 import React, { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Link from 'next/link'; // Added this import
+import Link from 'next/link'; // Ensure this is here
 import '../globals.css'; // Import Tailwind CSS styles
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -38,11 +38,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   Sign In
                 </button>
               </Link>
-              <Link href="/signup"> {/* Assuming you want a signup page; adjust if not needed */}
-                <button className="px-6 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition duration-300">
-                  Try Nixly Now
-                </button>
-              </Link>
+              <button className="px-6 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition duration-300">
+                Try Nixly Now
+              </button>
             </motion.div>
           </div>
         </header>
