@@ -1,12 +1,34 @@
 'use client'; // Mark as a Client Component for Framer Motion compatibility
 
-import React, { ReactNode } from 'react';
-import { motion } from 'framer-motion'; // Added this import
+import React, { ReactNode, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import './globals.css'; // Import manual CSS styles
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    const session = localStorage.getItem('nixlySession');
+    if (!session && window.location.pathname !== '/signin') {
+      window.location.href = '/signin';
+    }
+  }, []);
+
+  const session = localStorage.getItem('nixlySession');
+  if (!session && window.location.pathname === '/signin') {
+    return (
+      <html lang="en">
+        <Head>
+          <title>Nixly.ai</title>
+          <meta name="description" content="AI-powered tools to create professional video content quickly" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <body>{children}</body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en">
       <Head>
@@ -64,8 +86,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 whileHover={{ scale: 1.1, rotate: 2, z: 5 }}
                 whileTap={{ scale: 0.95 }}
                 className="nav-button try-btn"
+                onClick={() => {
+                  localStorage.removeItem('nixlySession');
+                  window.location.href = '/signin';
+                }}
               >
-                Try Nixly Now
+                Sign Out
               </motion.button>
             </motion.div>
           </div>

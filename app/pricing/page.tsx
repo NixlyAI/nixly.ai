@@ -1,8 +1,18 @@
 'use client';
 
-import { motion } from 'framer-motion'; // Fixed import
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Pricing() {
+  useEffect(() => {
+    const session = localStorage.getItem('nixlySession');
+    if (!session) {
+      window.location.href = '/signin';
+    }
+  }, []);
+
+  if (!localStorage.getItem('nixlySession')) return null;
+
   return (
     <div>
       <div className="min-h-screen bg-gradient-to-b from-gray-900 to-blue-900 py-16 relative">

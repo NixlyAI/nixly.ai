@@ -1,9 +1,18 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Features() {
+  useEffect(() => {
+    const session = localStorage.getItem('nixlySession');
+    if (!session) {
+      window.location.href = '/signin';
+    }
+  }, []);
+
+  if (!localStorage.getItem('nixlySession')) return null;
+
   const tools = [
     { name: 'AI Script Generator', description: 'Generate captivating scripts with AI insights.', example: 'Craft a 30-second promo script in seconds—boost engagement!' },
     { name: 'Text-to-Speech Synthesis', description: 'Convert text into lifelike voices.', example: 'Narrate videos with natural AI voices—impress your audience!' },
