@@ -1,4 +1,4 @@
-'use client'; // Mark this as a Client Component for Framer Motion animations
+'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -31,12 +31,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
-      
       <Head>
-  <title>Nixly.ai</title>
-  <meta name="description" content="AI-powered tools to create professional video content quickly" />
-  <link rel="icon" href="/favicon.ico" />
-</Head>
+        <title>Nixly.ai</title>
+        <meta name="description" content="AI-powered tools to create professional video content quickly" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 bg-gray-800 shadow-lg">
