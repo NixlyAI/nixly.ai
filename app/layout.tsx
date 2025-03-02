@@ -1,21 +1,27 @@
 'use client'; // Mark as a Client Component for Framer Motion compatibility
 
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import './globals.css'; // Import manual CSS styles
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const [isClient, setIsClient] = useState(false); // Track client-side rendering
+  const [session, setSession] = useState<string | null>(null); // State for session
+
   useEffect(() => {
-    const session = localStorage.getItem('nixlySession');
-    if (!session && window.location.pathname !== '/signin') {
+    setIsClient(true); // Mark as client-side
+    const storedSession = localStorage.getItem('nixlySession');
+    setSession(storedSession);
+
+    if (!storedSession && window.location.pathname !== '/signin') {
       window.location.href = '/signin';
     }
   }, []);
 
-  const session = localStorage.getItem('nixlySession');
-  if (!session && window.location.pathname === '/signin') {
+  // Only render the session check on the client side
+  if (isClient && !session && window.location.pathname === '/signin') {
     return (
       <html lang="en">
         <Head>
