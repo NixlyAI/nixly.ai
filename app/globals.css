@@ -1,13 +1,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-blue: #1e40af;
+  --primary-purple: #9333ea;
+  --gray-900: #0a0a0a;
+  --gray-800: #1f2937;
+  --gray-300: #d1d5db;
+  --purple-200: #c4b5fd;
+  --purple-300: #a78bfa;
+  --purple-600: #9333ea;
+  --purple-700: #7e22ce;
+  --blue-800: #1e3a8a;
+  --blue-900: #172554;
   --font-sans: 'Arial', 'Helvetica', sans-serif;
   --font-mono: 'Courier New', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: var(--gray-900);
     --foreground: #ededed;
   }
 }
@@ -19,148 +30,455 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-header {
-  position: fixed;
+.nav-bar {
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), rgba(30, 64, 175, 0.95));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(147, 51, 234, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nixly-logo {
+  background: linear-gradient(45deg, var(--primary-blue), var(--primary-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 0 0 10px rgba(147, 51, 234, 0.3);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nixly-logo:hover {
+  transform: scale(1.1);
+  opacity: 0.95;
+}
+
+.nav-button {
+  padding: 0.625rem 1.5rem; /* 10px 24px, slightly larger for 3D effect */
+  border-radius: 9999px; /* Full rounded */
+  font-weight: 700;
+  font-size: 1rem; /* 16px */
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.1) inset, 0 4px 5px rgba(0, 0, 0, 0.2) inset;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 50;
-  background-color: #1f2937; /* Dark gray for header, similar to bg-gray-800 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-header h1 {
-  font-size: 1.875rem; /* 30px, similar to text-3xl */
-  font-weight: bold;
+.nav-button:hover::after {
+  opacity: 1;
+}
+
+.sign-in-btn {
+  background: linear-gradient(45deg, #ffffff, #f3f4f6);
+  color: var(--foreground);
+  border: 1px solid #e5e7eb;
+}
+
+.sign-in-btn:hover {
+  background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(255, 255, 255, 0.2) inset, 0 6px 8px rgba(0, 0, 0, 0.3) inset;
+}
+
+.pricing-btn {
+  background: linear-gradient(45deg, var(--primary-blue), #2b59c3);
   color: #ffffff;
+  border: 1px solid #1a3a8a;
 }
 
-header button {
-  padding: 0.5rem 1rem; /* 8px 16px, similar to px-4 py-2 */
-  border-radius: 9999px; /* Full rounded, similar to rounded-full */
-  font-weight: 500;
+.pricing-btn:hover {
+  background: linear-gradient(45deg, #1a3a8a, var(--primary-blue));
+  box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.2) inset, 0 6px 8px rgba(0, 0, 0, 0.3) inset;
 }
 
-header .sign-in-btn {
-  background-color: #ffffff;
-  color: #111827; /* Dark text, similar to text-gray-900 */
-}
-
-header .sign-in-btn:hover {
-  background-color: #e5e7eb; /* Light gray hover, similar to hover:bg-gray-200 */
-}
-
-header .try-btn {
-  background-color: #4f46e5; /* Indigo, similar to bg-indigo-600 */
+.features-btn {
+  background: linear-gradient(45deg, var(--primary-purple), #a855f7);
   color: #ffffff;
+  border: 1px solid #7e22ce;
 }
 
-header .try-btn:hover {
-  background-color: #4338ca; /* Darker indigo hover, similar to hover:bg-indigo-700 */
+.features-btn:hover {
+  background: linear-gradient(45deg, #7e22ce, var(--primary-purple));
+  box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.2) inset, 0 6px 8px rgba(0, 0, 0, 0.3) inset;
+}
+
+.try-btn,
+.try-btn-3d,
+.explore-btn-3d {
+  background: linear-gradient(45deg, var(--primary-purple), #a855f7);
+  color: #ffffff;
+  border: 1px solid #7e22ce;
+}
+
+.try-btn:hover,
+.try-btn-3d:hover,
+.explore-btn-3d:hover {
+  background: linear-gradient(45deg, #7e22ce, var(--primary-purple));
+  box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.2) inset, 0 6px 8px rgba(0, 0, 0, 0.3) inset;
 }
 
 main {
-  padding-top: 5rem; /* 80px, similar to pt-20 */
+  padding-top: 0; /* No padding needed for non-fixed nav */
 }
 
-.hero-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(to bottom, #1e293b, #4f46e5); /* Dark gray to indigo, similar to bg-gradient-to-b from-gray-900 to-indigo-900 */
-  text-align: center;
-  padding: 1rem; /* 16px, similar to px-4 */
+.hero-section,
+.features-preview-section,
+.pricing-section,
+.features-section {
+  padding: 4rem 1.5rem 2rem; /* Adjusted for nav height */
+  background: linear-gradient(to bottom, var(--gray-900), var(--primary-blue));
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-section h2 {
-  font-size: 3.75rem; /* 60px, similar to text-5xl */
-  font-weight: 800; /* Extra bold, similar to font-extrabold */
-  margin-bottom: 1rem; /* 16px, similar to mb-4 */
+.hero-section::before,
+.features-preview-section::before,
+.pricing-section::before,
+.features-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(30, 64, 175, 0.2), rgba(147, 51, 234, 0.1), transparent 80%);
+  z-index: 1;
+}
+
+.hero-section h1,
+.hero-section p,
+.hero-section button,
+.features-preview-section h2,
+.pricing-section h1,
+.features-section h1,
+.feature-card-3d h3,
+.pricing-card-3d h2,
+.pricing-card-3d p,
+.pricing-card-3d ul,
+.pricing-card-3d ul li,
+.feature-card-3d p,
+.feature-card-3d .example,
+.try-btn-3d,
+.explore-btn-3d {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-section h1 {
+  font-size: 4rem; /* 64px, larger for visibility */
+  font-weight: 900; /* Ultra-bold for 3D effect */
+  margin-bottom: 1.5rem; /* 24px */
   color: #ffffff;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(147, 51, 234, 0.5);
+}
+
+.glow-purple {
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(147, 51, 234, 0.5);
+}
+
+.glow-blue {
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(30, 64, 175, 0.5);
 }
 
 .hero-section p {
-  font-size: 1.25rem; /* 20px, similar to text-xl */
-  margin-bottom: 2rem; /* 32px, similar to mb-8 */
-  color: #d1d5db; /* Light gray, similar to text-gray-200 */
+  font-size: 1.5rem; /* 24px, larger for visibility */
+  margin-bottom: 2.5rem; /* 40px */
+  color: var(--purple-200);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 15px rgba(147, 51, 234, 0.3);
 }
 
-.hero-section button {
-  padding: 1rem 2rem; /* 16px 32px, similar to px-8 py-4 */
-  font-size: 1.125rem; /* 18px, similar to text-lg */
-  border-radius: 9999px; /* Full rounded, similar to rounded-full */
-  background-color: #4f46e5; /* Indigo, similar to bg-indigo-600 */
+.hero-section button,
+.try-btn-3d,
+.explore-btn-3d {
+  padding: 1.25rem 3rem; /* 20px 48px, larger for 3D effect */
+  font-size: 1.25rem; /* 20px */
+  border-radius: 9999px; /* Full rounded */
+  background: linear-gradient(45deg, var(--primary-purple), #a855f7);
   color: #ffffff;
-  box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3); /* Shadow, similar to shadow-md */
+  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.2) inset, 0 4px 8px rgba(0, 0, 0, 0.3) inset;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+  position: relative;
+  z-index: 2;
 }
 
-.hero-section button:hover {
-  background-color: #4338ca; /* Darker indigo hover, similar to hover:bg-indigo-700 */
+.hero-section button:hover,
+.try-btn-3d:hover,
+.explore-btn-3d:hover {
+  background: linear-gradient(45deg, #7e22ce, var(--primary-purple));
+  box-shadow: 0 10px 30px rgba(147, 51, 234, 0.8), 0 0 0 4px rgba(255, 255, 255, 0.3) inset, 0 6px 12px rgba(0, 0, 0, 0.4) inset;
+  transform: scale(1.15);
 }
 
-.tools-section {
-  padding: 4rem 1.5rem; /* 64px 24px, similar to py-16 px-6 */
-  background-color: #1e293b; /* Dark gray, similar to bg-gray-900 */
-}
-
-.tools-section h3 {
-  font-size: 2.25rem; /* 36px, similar to text-4xl */
-  font-weight: bold;
-  margin-bottom: 3rem; /* 48px, similar to mb-12 */
+.features-preview-section h2,
+.pricing-section h1,
+.features-section h1 {
+  font-size: 2.5rem; /* 40px, larger for visibility */
+  font-weight: 900; /* Ultra-bold for 3D effect */
+  margin-bottom: 3rem; /* 48px */
   color: #ffffff;
-  text-align: center;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(147, 51, 234, 0.5);
 }
 
-.tools-grid {
+.features-preview-grid,
+.pricing-grid,
+.features-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 2rem; /* 32px, similar to gap-8 */
-  max-width: 48rem; /* 768px, similar to max-w-7xl */
+  gap: 2.5rem; /* 40px, larger spacing for premium look */
+  max-width: 60rem; /* 960px, wider for visibility */
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  z-index: 2;
 }
 
 @media (min-width: 768px) {
-  .tools-grid {
+  .features-preview-grid,
+  .pricing-grid,
+  .features-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 80rem; /* 1280px */
   }
 }
 
 @media (min-width: 1024px) {
-  .tools-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .pricing-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 100rem; /* 1600px */
+  }
+  .features-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 100rem; /* 1600px */
   }
 }
 
-.tool-card {
-  padding: 1.5rem; /* 24px, similar to p-6 */
-  background-color: #374151; /* Gray, similar to bg-gray-800 */
-  border-radius: 0.5rem; /* 8px, similar to rounded-lg */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow, similar to shadow-lg */
+.feature-card-3d,
+.pricing-card-3d {
+  padding: 2rem; /* 32px, larger for 3D effect */
+  background: linear-gradient(to bottom, var(--blue-800), var(--blue-900));
+  border-radius: 1rem; /* 16px, larger for 3D effect */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(147, 51, 234, 0.3);
+  border: 2px solid rgba(147, 51, 234, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, rotate 0.3s ease;
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
 }
 
-.tool-card:hover {
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover, similar to hover:shadow-xl */
+.feature-card-3d:hover,
+.pricing-card-3d:hover {
+  transform: translateY(-15px) rotateY(5deg) rotateX(5deg);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(147, 51, 234, 0.5);
+  background: linear-gradient(to bottom, var(--blue-900), var(--blue-800));
 }
 
-.tool-card h4 {
-  font-size: 1.25rem; /* 20px, similar to text-xl */
-  font-weight: 600; /* Semi-bold, similar to font-semibold */
-  margin-bottom: 0.5rem; /* 8px, similar to mb-2 */
+.feature-card-3d::before,
+.pricing-card-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+  border-radius: 1rem;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.feature-card-3d h3,
+.pricing-card-3d h2 {
+  font-size: 2rem; /* 32px, larger for visibility */
+  font-weight: 900; /* Ultra-bold for 3D effect */
+  margin-bottom: 1.5rem; /* 24px */
+  color: var(--purple-300);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 0 15px rgba(147, 51, 234, 0.4);
+}
+
+.feature-card-3d p,
+.pricing-card-3d p,
+.pricing-card-3d ul,
+.pricing-card-3d ul li {
+  color: var(--gray-300);
+  font-size: 1.25rem; /* 20px, larger for visibility */
+  line-height: 1.75;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card-3d .example {
+  font-style: italic;
+  color: var(--purple-200);
+  margin-top: 1rem; /* 16px */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(147, 51, 234, 0.3);
+}
+
+.pricing-card-3d ul {
+  list-style: none;
+  margin-bottom: 2.5rem; /* 40px */
+}
+
+.pricing-card-3d ul li {
+  margin-bottom: 0.75rem; /* 12px */
+  position: relative;
+  padding-left: 1.25rem; /* 20px, larger for visibility */
+}
+
+.pricing-card-3d ul li::before {
+  content: '✓';
+  color: var(--primary-purple);
+  position: absolute;
+  left: 0;
+  top: 0.25rem; /* 4px, centered vertically */
+  font-size: 1rem; /* 16px */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-card-3d button,
+.try-btn-3d,
+.explore-btn-3d {
+  padding: 1.25rem 3rem; /* 20px 48px, larger for 3D effect */
+  font-size: 1.25rem; /* 20px */
+  border-radius: 9999px; /* Full rounded */
+  background: linear-gradient(45deg, var(--primary-purple), #a855f7);
   color: #ffffff;
+  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.2) inset, 0 4px 8px rgba(0, 0, 0, 0.3) inset;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+  position: relative;
+  z-index: 2;
 }
 
-.tool-card p {
-  color: #9ca3af; /* Light gray, similar to text-gray-400 */
+.pricing-card-3d button:hover,
+.try-btn-3d:hover,
+.explore-btn-3d:hover {
+  background: linear-gradient(45deg, #7e22ce, var(--primary-purple));
+  box-shadow: 0 10px 30px rgba(147, 51, 234, 0.8), 0 0 0 4px rgba(255, 255, 255, 0.3) inset, 0 6px 12px rgba(0, 0, 0, 0.4) inset;
+  transform: scale(1.15);
 }
 
 footer {
-  padding: 1.5rem; /* 24px, similar to p-6 */
-  background-color: #1f2937; /* Dark gray, similar to bg-gray-800 */
+  padding: 1.5rem; /* 24px */
+  background-color: var(--gray-800);
   text-align: center;
-  color: #d1d5db; /* Light gray, similar to text-gray-300 */
+  color: var(--gray-300);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+footer a {
+  color: var(--primary-purple);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #7e22ce;
+  text-decoration: none;
+}
+
+/* 3D Drop Shadows */
+.drop-shadow-3d {
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-3d {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(147, 51, 234, 0.3);
+}
+
+.shadow-3d-lg {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(147, 51, 234, 0.5);
+}
+
+.shadow-3d-xl {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(147, 51, 234, 0.6);
+}
+
+/* Particle Effect */
+.particle-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle-effect::before,
+.particle-effect::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.5), transparent);
+  border-radius: 50%;
+  animation: float 6s infinite ease-in-out;
+}
+
+.particle-effect::after {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(30, 64, 175, 0.5), transparent);
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-50px) translateX(30px) scale(1.2); opacity: 1; }
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .nav-bar .flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-bar .space-x-8 {
+    display: none; /* Hide space on mobile, handle spacing via flex-col */
+  }
+
+  .nav-bar button,
+  .nav-bar a button {
+    margin: 0.75rem 0; /* Larger vertical spacing on mobile */
+  }
+
+  .nixly-logo {
+    font-size: 2.5rem; /* 40px, smaller for mobile */
+  }
+
+  .nav-button {
+    font-size: 0.875rem; /* 14px, smaller for mobile */
+    padding: 0.5rem 1.25rem; /* 8px 20px */
+  }
+
+  .hero-section h1 { font-size: 3rem; /* 48px */ }
+  .hero-section p { font-size: 1.25rem; /* 20px */ }
+  .hero-section button,
+  .try-btn-3d,
+  .explore-btn-3d { font-size: 1rem; /* 16px */ padding: 1rem 2.5rem; /* 16px 40px */ }
+
+  .features-preview-section h2,
+  .pricing-section h1,
+  .features-section h1 { font-size: 2rem; /* 32px */ }
+
+  .feature-card-3d h3,
+  .pricing-card-3d h2 { font-size: 1.5rem; /* 24px */ }
+  .feature-card-3d p,
+  .pricing-card-3d p,
+  .pricing-card-3d ul,
+  .pricing-card-3d ul li { font-size: 1rem; /* 16px */ }
 }

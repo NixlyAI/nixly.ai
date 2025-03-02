@@ -4,85 +4,77 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function Home() {
-  const tools = [
-    'AI Script Generator',
-    'Text-to-Speech Synthesis',
-    'Video Preview Editor',
-    'Scene Suggestion Engine',
-    'Auto-Caption Creator',
-    'Background Music Composer',
-    'Video Style Transformer',
-    'Interactive Video Overlays',
-    'Video Summarizer',
-    'Custom Template Builder',
-    'Social Media Optimizer',
-    'Thumbnail Designer',
-    'Text-to-Animation Tool',
-    'Audio Transcription Service',
-    'Video Enhancer',
-    'Collaborative Editing Suite',
-    'Trend Analyzer',
-    'B-Roll Library',
-    'Speech-to-Avatar Generator',
-    'Analytics Dashboard',
-  ];
-
   return (
     <div>
       {/* Hero Section */}
       <section className="hero-section">
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl font-extrabold mb-4"
-        >
-          Create Stunning Content in Seconds
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl mb-8"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="text-center max-w-5xl mx-auto px-4 relative z-10"
         >
-          Harness the power of AI to bring your video ideas to life effortlessly.
-        </motion.p>
-        <motion.button
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          whileHover={{ scale: 1.05 }}
-          className="try-btn"
-        >
-          Try Nixly Now
-        </motion.button>
+          <h1 className="text-6xl md:text-8xl font-extrabold mb-8 text-white drop-shadow-3d glow-purple">
+            Unleash Stunning AI Content
+          </h1>
+          <p className="text-2xl md:text-3xl mb-12 text-purple-200 drop-shadow-3d glow-blue">
+            Transform your ideas into jaw-dropping videos effortlessly with Nixly’s cutting-edge AI tools—upgrade to Pro for unlimited power!
+          </p>
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            whileHover={{ scale: 1.15, rotate: 2, z: 10 }}
+            whileTap={{ scale: 0.95 }}
+            className="try-btn-3d"
+          >
+            Try Nixly Now
+          </motion.button>
+        </motion.div>
+        <div className="particle-effect"></div> {/* Subtle particle animation */}
       </section>
 
-      {/* Tools Section */}
-      <section className="tools-section">
-        <motion.h3
+      {/* Features Preview Section */}
+      <section className="features-preview-section">
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-12"
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-5xl font-bold text-center mb-12 text-white drop-shadow-3d glow-purple"
         >
-          Our AI-Powered Tools
-        </motion.h3>
-        <div className="tools-grid">
-          {tools.map((tool, index) => (
-            <motion.div
-              key={tool}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="tool-card"
-            >
-              <h4 className="text-xl font-semibold mb-2">{tool}</h4>
-              <p>Coming soon...</p>
-            </motion.div>
-          ))}
+          Discover Nixly’s AI Magic
+        </motion.h2>
+        <div className="features-preview-grid">
+          <motion.div
+            initial={{ opacity: 0, x: -50, rotate: -5 }}
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+            transition={{ duration: 0.8 }}
+            className="feature-card-3d"
+          >
+            <h3 className="text-2xl font-semibold mb-4 text-purple-300 drop-shadow-3d glow-purple">AI Video Magic</h3>
+            <p className="text-gray-300 text-lg drop-shadow-md">Craft breathtaking video previews with dazzling style filters—upgrade to Pro for advanced features!</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 50, rotate: 5 }}
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="feature-card-3d"
+          >
+            <h3 className="text-2xl font-semibold mb-4 text-blue-300 drop-shadow-3d glow-blue">Voice Revolution</h3>
+            <p className="text-gray-300 text-lg drop-shadow-md">Convert text into lifelike voices with AI brilliance—unlock Pro for unlimited languages!</p>
+          </motion.div>
         </div>
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1 }}
+          whileHover={{ scale: 1.1, rotate: 2, z: 5 }}
+          whileTap={{ scale: 0.95 }}
+          className="explore-btn-3d mt-12"
+        >
+          Explore All Features
+        </motion.button>
+        <div className="particle-effect"></div> {/* Subtle particle animation */}
       </section>
     </div>
   );
