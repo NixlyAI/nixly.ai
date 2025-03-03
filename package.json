@@ -1,18 +1,19 @@
 {
   "dependencies": {
-    "framer-motion": "^11.0.5",
     "next": "^15.x.x",
     "react": "^18.x.x",
-    "react-dom": "^18.x.x"
+    "react-dom": "^18.x.x",
+    "framer-motion": "^11.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^9.x.x",
+    "@types/node": "^20.x.x",
+    "@types/react": "^18.x.x",
+    "@types/react-dom": "^18.x.x"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
-  },
-  "devDependencies": {
-    "@types/node": "22.13.8",
-    "@types/react": "19.0.10",
-    "typescript": "5.8.2"
   }
 }

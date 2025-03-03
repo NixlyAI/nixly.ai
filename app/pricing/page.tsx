@@ -1,17 +1,24 @@
-'use client';
+'use client'; // Ensure this is a Client Component
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Pricing() {
+  const [isClient, setIsClient] = useState(false); // Track client-side rendering
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track authentication
+
   useEffect(() => {
+    setIsClient(true); // Mark as client-side
     const session = localStorage.getItem('nixlySession');
-    if (!session) {
+    setIsAuthenticated(!!session); // Set authentication state
+
+    if (!session && window.location.pathname !== '/signin') {
       window.location.href = '/signin';
     }
   }, []);
 
-  if (!localStorage.getItem('nixlySession')) return null;
+  // Only render the pricing if on the client and authenticated
+  if (!isClient || !isAuthenticated) return null;
 
   return (
     <div>

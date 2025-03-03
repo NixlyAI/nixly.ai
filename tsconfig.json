@@ -28,7 +28,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "types": ["@types/node", "@types/react", "@types/react-dom"] // Ensure these are included
   },
   "include": [
     "app/**/*",
