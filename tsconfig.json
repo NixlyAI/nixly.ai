@@ -29,7 +29,7 @@
         "name": "next"
       }
     ],
-    "types": ["@types/node", "@types/react", "@types/react-dom"] // Ensure these are included
+    "types": ["@types/node", "@types/react", "@types/react-dom"]
   },
   "include": [
     "app/**/*",
